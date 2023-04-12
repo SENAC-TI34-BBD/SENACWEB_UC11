@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle Bancário - Cadastro de Conta corrente</title>
+  </head>
+  <body>
+    <form action="bancario.php" method="post" name="cadastro">
+      <table>
+        <caption>
+          CADASTRO DE CONTA CORRENTE
+        </caption>
+        <tr>
+          <td><label for="nome">Nome do correntista:</label></td>
+          <td>
+            <input
+              type="text"
+              name="nome"
+              size="40"
+              maxlength="50"
+              required
+              placeholder="Informe o nome do correntista"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="agencia">Agência:</label></td>
+          <td>
+            <input
+              type="text"
+              name="agencia"
+              size="20"
+              maxlength="20"
+              required
+            />
+          </td>
+        </tr>
+
+        <tr>
+          <td><label for="banco">Banco:</label></td>
+          <td>
+            <select name="banco">
+              <option value="#"></option>
+              <option value="brasil">001 - Banco do Brasil</option>
+              <option value="santander">033 - Banco Santander</option>
+              <option value="caixa">104 - Caixa Econômica Federal</option>
+              <option value="bradesco">237 - Banco Bradesco</option>
+              <option value="itau">341 - Banco Itaú</option>
+              <option value="mercantil">389 - Banco Mercantil</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="numero_conta">Número da Conta:</label></td>
+          <td>
+            <input
+              type="text"
+              name="numero_conta"
+              size="20"
+              maxlength="20"
+              required
+            />
+          </td>
+        </tr>
+        <tr>
+          <td><label for="tipo_conta">Tipo de Conta:</label></td>
+          <td>
+            <input type="radio" name="tipo_conta" />Conta Comum
+            <input type="radio" name="tipo_conta" />Conta Especial
+          </td>
+        </tr>
+        <tr>
+          <td><label for="data_abertura">Data da abertura:</label></td>
+          <td><input type="date" name="data_abertura" /></td>
+        </tr>
+        <tr>
+          <td><label for="saldo_inicial">Saldo Inicial:</label></td>
+          <td><input type="numer" name="saldo_inicial" step="0.01" /></td>
+        </tr>
+        <tr>
+          <td><label for="deposito">Depósito:</label></td>
+          <td><input type="numer" name="deposito" step="0.01" /></td>
+        </tr>
+        <tr>
+          <td>
+            <input type="submit" value="Cadastrar" name="cadastrar" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
