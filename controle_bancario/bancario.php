@@ -28,6 +28,21 @@
       $banco = "--";
     }
     echo "<br> Nome do banco: " . $banco;
+    $numero_conta = $_POST["numero_conta"];
+    echo "<br> Número do conta: " . $numero_conta;
+    $tipo_conta = $_POST["tipo_conta"];
+    if ($tipo_conta == "on") {
+      $tipo_conta = "Conta Especial";
+    } else {
+      $tipo_conta = "Conta Comum";
+    }
+    echo "<br> Tipo de conta: " . $tipo_conta;
+    $data_abertura = $_POST["data_abertura"];
+    echo "<br> Data de abertura: " . $data_abertura;
+    $saldo_inicial = $_POST["saldo_inicial"];
+    echo "<br> Sala inicial: " . $saldo_inicial;
+    $deposito = $_POST["deposito"];
+    echo "<br> Deposito: " . $deposito;
     ?>
 </body>
 </html>
