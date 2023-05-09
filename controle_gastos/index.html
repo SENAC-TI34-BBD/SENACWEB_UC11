@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Controle de Gastos</title>
+  </head>
+  <body>
+    <h3>Controle de Gastos pessoais:</h3>
+    <form action="gastos_exibir.php" method="post" name="gastos">
+      <fieldset>
+        <legend>Receitas:</legend>
+        <label for="salario"
+          >Salário:
+          <input
+            type="number"
+            name="salario"
+            id="salario"
+            maxlength="10"
+            required
+          />
+        </label>
+        <br />
+        <label for="outros"
+          >Outros:
+          <input
+            type="number"
+            name="outros"
+            id="outros"
+            maxlength="10"
+            value="0"
+          />
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Despesas:</legend>
+        <input
+          type="text"
+          name="despesas-titulo1"
+          id="despesas-titulo"
+          value="Despesa1:"
+        />
+        <input
+          type="number"
+          name="despesas1"
+          id="depesas-valor"
+          placeholder="R$ XX,XX"
+        />
+        <br />
+        <input
+          type="text"
+          name="despesas-titulo2"
+          id="despesas-titulo"
+          value="Despesa2:"
+        />
+        <input
+          type="number"
+          name="despesas2"
+          id="depesas-valor"
+          placeholder="R$ XX,XX"
+        />
+        <br />
+        <input
+          type="text"
+          name="despesas-titulo3"
+          id="despesas-titulo"
+          value="Despesa3:"
+        />
+        <input
+          type="number"
+          name="despesas3"
+          id="depesas-valor"
+          placeholder="R$ XX,XX"
+        />
+        <br />
+        <input
+          type="text"
+          name="despesas-titulo4"
+          id="despesas-titulo"
+          value="Despesa4:"
+        />
+        <input
+          type="number"
+          name="despesas4"
+          id="depesas-valor"
+          placeholder="R$ XX,XX"
+        />
+        <br />
+        <input
+          type="text"
+          name="despesas-titulo5"
+          id="despesas-titulo"
+          value="Despesa5:"
+        />
+        <input
+          type="number"
+          name="despesas5"
+          id="depesas-valor"
+          placeholder="R$ XX,XX"
+        />
+      </fieldset>
+      <br />
+      <input type="submit" value="Calcular" />
+    </form>
+  </body>
+</html>
