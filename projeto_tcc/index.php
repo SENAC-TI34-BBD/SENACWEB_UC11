@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,16 +50,16 @@
           <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
       </nav>
-      <div class="login-area">
-        <button
-          type="button"
-          name="btnLogin"
-          class="btnLogin"
-          data-toggle="modal"
-          data-target="#modalLogin"
-        >
-          Login
-        </button>
+      <?php
+        if(isset($_SESSION['id']) and (isset($_SESSION['nome']))){
+            echo "Bem vindo " . $_SESSION['nome'] . "<br>";
+            echo "<a href='./content/logout.php'>Sair</a><br>";
+        }else{
+            echo "<div class='login-area'>";
+            echo "<button type='button' name='btnLogin' class='btnLogin' data-toggle='modal' data-target='#modalLogin'> Login </button>";
+            echo "</div>";
+        }
+        ?>
       </div>
     </header>
     <div
@@ -65,7 +68,7 @@
       data-backdrop="static"
       data-keyboard="true"
     >
-      <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-dialog modal-xl modal-dialog-centered" id="loginModal">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Login / Registre-se</h4>
@@ -76,7 +79,8 @@
           <div class="modal-body">
             <div class="areas-modal">
               <div class="area-login">
-                <form action="content/login_api.php" method="post">
+                <form id="login-usuario-form">
+                <span id="msgAlertErroLogin"></span>
                   <label for="user"
                     >Usuário: <br /><input
                       type="text"
@@ -90,11 +94,10 @@
                       type="password"
                       name="password"
                       id="password"
-                      required
                   /></label>
                   <a href="recuperar-senha.html">Esqueceu sua senha?</a><br />
                   <br />
-                  <button type="submit" name="login" class="logarBtn">
+                  <button type="submit" name="login" class="logarBtn" id="login-usuario-btn">
                     Login
                   </button>
                 </form>
@@ -119,7 +122,7 @@
         </div>
       </div>
     </div>
-
+    <script src="js/script.js"></script>
     <footer class="site-footer">
       <nav class="menu-footer">
         <h3 class="title-navegacao">Navegação</h3>
