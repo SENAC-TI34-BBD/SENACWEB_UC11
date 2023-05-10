@@ -1,3 +1,12 @@
+<?php
+include "./api/config/database.php";
+session_start();
+if (isset($_SESSION["user_id"])) {
+  $username = "teste";
+} else {
+  $username = "sessao criada";
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -40,14 +49,29 @@
       <nav class="menu">
         <ul class="menu-list">
           <li>
-            <a href="index.html" class="menu-item" id="menu-selected">Home</a>
+            <a href="index.html" class="menu-item">Home</a>
           </li>
-          <li><a href="match.html" class="menu-item">Seu Match</a></li>
-          <li><a href="destinos.html" class="menu-item">Destinos</a></li>
-          <li><a href="contato.html" class="menu-item">Contato</a></li>
+          <li>
+            <a href="match.html" class="menu-item">Seu Match</a>
+          </li>
+          <li>
+            <a href="destinos.html" class="menu-item">Destinos</a>
+          </li>
+          <li>
+            <a href="contato.html" class="menu-item" id="menu-selected"
+              >Contato</a
+            >
+          </li>
         </ul>
       </nav>
-      <div class="login-area">
+      <?php // Verifica se a sessão já foi iniciada
+
+if (session_status() == PHP_SESSION_ACTIVE) {
+        echo '<div style="display: none;" class="login-area">';
+      } else {
+        echo '<div style="display: block;" class="login-area">';
+      } ?>
+      
         <button
           type="button"
           name="btnLogin"
@@ -58,6 +82,7 @@
           Login
         </button>
       </div>
+      <?php echo $username; ?>
     </header>
     <div
       class="modal fade"
@@ -76,21 +101,20 @@
           <div class="modal-body">
             <div class="areas-modal">
               <div class="area-login">
-                <form action="content/login_api.php" method="post">
+                <form
+                  action="./api/users/login.php"
+                  method="post"
+                  id="login-form"
+                >
                   <label for="user"
                     >Usuário: <br /><input
                       type="text"
-                      name="user"
-                      id="user"
-                      required /></label
+                      name="username"
+                      id="username" /></label
                   ><br />
                   <label for="password"
                     >Senha: <br />
-                    <input
-                      type="password"
-                      name="password"
-                      id="password"
-                      required
+                    <input type="password" name="password" id="password"
                   /></label>
                   <a href="recuperar-senha.html">Esqueceu sua senha?</a><br />
                   <br />
@@ -119,7 +143,6 @@
         </div>
       </div>
     </div>
-
     <footer class="site-footer">
       <nav class="menu-footer">
         <h3 class="title-navegacao">Navegação</h3>
