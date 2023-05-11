@@ -2,7 +2,7 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,6 +34,7 @@ session_start();
     <title>TravelNow - Seu próximo Destino</title>
   </head>
   <body>
+    <div class="index-body">
     <header class="menu-container">
       <div class="logo">
         <a href="index.html"
@@ -141,5 +142,6 @@ session_start();
         </p>
       </div>
     </footer>
+    </div>
   </body>
 </html>
