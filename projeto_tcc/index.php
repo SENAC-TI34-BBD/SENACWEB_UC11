@@ -126,7 +126,7 @@ session_start(); ?>
       </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="js/login_validate.js"></script>
     <footer class="site-footer">
       <nav class="menu-footer">
         <h3 class="title-navegacao">Navegação</h3>
