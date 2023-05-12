@@ -36,7 +36,7 @@ session_start(); ?>
     <div class="index-body">
     <header class="menu-container">
       <div class="logo">
-        <a href="index.html"
+        <a href="index.php"
           ><img src="./assets/imgs/logo_normal.png" width="250px" alt="Logo"
         /></a>
       </div>
@@ -71,7 +71,7 @@ session_start(); ?>
       <div class="modal-dialog modal-xl modal-dialog-centered" id="loginModal">
         <div class="modal-content">
           <div class="modal-header">
-            <h4 class="modal-title">Login / Registre-se</h4>
+            <h4 class="modal-title" id="modal-title-font">Login / Registre-se</h4>
             <button type="button" class="close" data-dismiss="modal">
               &times;
             </button>
@@ -83,7 +83,7 @@ session_start(); ?>
                 <span id="msgAlertErroLogin"></span>
                 <div class="signin-input">
                   <label for="user"
-                    >Usuário: <br /><input
+                    >E-mail: <br /><input
                       type="text"
                       name="user"
                       id="user"

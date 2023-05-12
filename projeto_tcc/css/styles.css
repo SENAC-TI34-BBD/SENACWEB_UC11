@@ -92,6 +92,10 @@
     margin-left: 90px;
     margin-bottom: 100px;
   }
+  #modal-title-font {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+  }
   .area-login {
     font-family: "Poppins", sans-serif;
     display: flex;
@@ -314,15 +318,14 @@
   }
 
   .registerBtn {
+    font-family: "Poppins", sans-serif;
     background-color: #db2e53;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
-    border-radius: 10px;
+    border-radius: 7px;
     cursor: pointer;
-    font-size: 12pt;
-    font-family: "Poppins", sans-serif;
     width: 400px;
   }
   #dados-usuario {
