@@ -24,12 +24,9 @@ loginForm.addEventListener("submit", async (e) => {
     if (resposta["erro"]) {
       msgAlertErroLogin.innerHTML = resposta["msg"];
     } else {
-      document.getElementById("dados-usuario").innerHTML =
-        "Bem vindo " +
-        resposta["dados"].nome +
-        "<br><a href='sair.php'>Sair</a><br>";
       loginForm.reset();
       loginModal.hide();
+      location.reload();
     }
   }
 });

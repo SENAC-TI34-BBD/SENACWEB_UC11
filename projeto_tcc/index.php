@@ -51,8 +51,10 @@ session_start(); ?>
         </ul>
       </nav>
       <?php if (isset($_SESSION["id"]) and isset($_SESSION["nome"])) {
+        echo "<div id='dados-usuario'>";
         echo "Bem vindo " . $_SESSION["nome"] . "<br>";
         echo "<a href='./content/logout.php'>Sair</a><br>";
+        echo "</div>";
       } else {
         echo "<div class='login-area'>";
         echo "<button type='button' name='btnLogin' class='btnLogin' data-toggle='modal' data-target='#modalLogin'> Login </button>";
