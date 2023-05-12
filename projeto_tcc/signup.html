@@ -24,46 +24,130 @@
             >
           </div>
           <div class="signup-container">
-            <h1>Cadastre-se em nosso site:</h1>
-            <form id="registro-usuario-form" class="signup-form">
-              <span id="msgAlertErroLogin"></span>
-              <label for="nome_completo"
-                >Nome completo: <br /><input
-                  type="text"
-                  name="nome_completo"
-                  id="nome_completo"
-                  required /></label
-              ><br />
-              <label for="user"
-                >Nome de Usuário: <br /><input
-                  type="text"
-                  name="user"
-                  id="user"
-                  required /></label
-              ><br />
-              <label for="email"
-                >E-mail: <br /><input
-                  type="email"
-                  name="email"
-                  id="email"
-                  required /></label
-              ><br />
-              <label for="password"
-                >Senha: <br />
-                <input type="password" name="password" id="password"
-              /></label>
-              <br />
-              <button
-                type="submit"
-                name="register"
-                class="registerBtn"
-                id="register-usuario-btn"
-              >
-                Cadastrar-se
-              </button>
-            </form>
+            <div class="form-left">
+
+            </div>
+            <div class="form-right">
+              <h1 class="signup-title">Crie sua conta</h1>
+              <form id="registro-usuario-form" class="signup-form">
+                <span id="msgAlertErroLogin"></span>
+                <br />
+                <div class="signup-inputs">
+                  <div class="signup-input" id="nome-block">
+                    <label for="nome"
+                      >Nome<br />
+                      <input
+                        type="text"
+                        name="nome"
+                        id="nome"
+                        placeholder="Nome"
+                      />
+                    </label>
+                  </div>
+                  <div class="signup-input" id="sobrenome-block">
+                    <label for="sobrenome"
+                      >Sobrenome<br />
+                      <input
+                        type="text"
+                        name="sobrenome"
+                        id="sobrenome"
+                        placeholder="Sobrenome"
+                    /></label>
+                  </div>
+                  <div class="signup-input" id="email-block">
+                    <label for="email"
+                      >Email<br />
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="Email"
+                      />
+                    </label>
+                  </div>
+                  <div class="signup-input" id="telefone-block">
+                    <label for="telefone"
+                      >Telefone<br />
+                      <input
+                        type="tel"
+                        name="telefone"
+                        id="telefone"
+                        placeholder="Telefone"
+                      />
+                    </label>
+                  </div>
+                  <div class="signup-input" id="senha-block">
+                    <label for="senha"
+                      >Senha<br />
+                      <input
+                        type="password"
+                        name="senha"
+                        id="senha"
+                        placeholder="Senha"
+                      />
+                    </label>
+                  </div>
+                  <div class="signup-input" id="confirmar-senha-block">
+                    <label for="confirmar-senha"
+                      >Confirmar senha<br /><input
+                        type="password"
+                        name="confirmar-senha"
+                        id="confirmar-senha"
+                        placeholder="Confirme sua senha"
+                    /></label>
+                  </div>
+                  <div class="genero-block" id="genero-block">
+                    <p>Gênero</p>
+                    <input
+                      type="radio"
+                      name="genero"
+                      class="genero"
+                      id="masculino"
+                      value="masculino"
+                    />
+                    <label for="masculino" class="label-genero"
+                      >Masculino</label
+                    >
+                    <input
+                      type="radio"
+                      name="genero"
+                      class="genero"
+                      id="feminino"
+                      value="feminino"
+                    />
+                    <label for="feminino" class="label-genero">Feminino</label>
+                    <input
+                      type="radio"
+                      name="genero"
+                      class="genero"
+                      id="outro"
+                      value="outro"
+                      name="genero"
+                    />
+                    <label for="outro" class="label-genero">Outro</label>
+                    <input
+                      type="radio"
+                      name="genero"
+                      class="genero"
+                      id="naodizer"
+                      value="vazio"
+                    />
+                    <label for="naodizer" class="label-genero"
+                      >Não Informar</label
+                    >
+                  </div>
+                  <div class="submit-block" id="submit-block">
+                    <button type="submit" name="register" class="registerBtn">Cadastrar</button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
+      </div>
+      <div class="logo-signup">
+        <a href="index.html"
+          ><img src="./assets/imgs/logo_normal.png" width="250px" alt="Logo"
+        /></a>
       </div>
     </article>
   </body>

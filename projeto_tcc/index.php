@@ -1,14 +1,7 @@
 <?php
-include "./api/config/database.php";
-session_start();
-if (isset($_SESSION["user_id"])) {
-  $username = "teste";
-} else {
-  $username = "sessao criada";
-}
-?>
+session_start(); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -40,6 +33,7 @@ if (isset($_SESSION["user_id"])) {
     <title>TravelNow - Seu próximo Destino</title>
   </head>
   <body>
+    <div class="index-body">
     <header class="menu-container">
       <div class="logo">
         <a href="index.html"
@@ -49,40 +43,22 @@ if (isset($_SESSION["user_id"])) {
       <nav class="menu">
         <ul class="menu-list">
           <li>
-            <a href="index.html" class="menu-item">Home</a>
+            <a href="index.html" class="menu-item" id="menu-selected">Home</a>
           </li>
-          <li>
-            <a href="match.html" class="menu-item">Seu Match</a>
-          </li>
-          <li>
-            <a href="destinos.html" class="menu-item">Destinos</a>
-          </li>
-          <li>
-            <a href="contato.html" class="menu-item" id="menu-selected"
-              >Contato</a
-            >
-          </li>
+          <li><a href="match.html" class="menu-item">Seu Match</a></li>
+          <li><a href="destinos.html" class="menu-item">Destinos</a></li>
+          <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
       </nav>
-      <?php // Verifica se a sessão já foi iniciada
-
-if (session_status() == PHP_SESSION_ACTIVE) {
-        echo '<div style="display: none;" class="login-area">';
+      <?php if (isset($_SESSION["id"]) and isset($_SESSION["nome"])) {
+        echo "Bem vindo " . $_SESSION["nome"] . "<br>";
+        echo "<a href='./content/logout.php'>Sair</a><br>";
       } else {
-        echo '<div style="display: block;" class="login-area">';
+        echo "<div class='login-area'>";
+        echo "<button type='button' name='btnLogin' class='btnLogin' data-toggle='modal' data-target='#modalLogin'> Login </button>";
+        echo "</div>";
       } ?>
-      
-        <button
-          type="button"
-          name="btnLogin"
-          class="btnLogin"
-          data-toggle="modal"
-          data-target="#modalLogin"
-        >
-          Login
-        </button>
       </div>
-      <?php echo $username; ?>
     </header>
     <div
       class="modal fade"
@@ -90,7 +66,7 @@ if (session_status() == PHP_SESSION_ACTIVE) {
       data-backdrop="static"
       data-keyboard="true"
     >
-      <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-dialog modal-xl modal-dialog-centered" id="loginModal">
         <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Login / Registre-se</h4>
@@ -101,24 +77,29 @@ if (session_status() == PHP_SESSION_ACTIVE) {
           <div class="modal-body">
             <div class="areas-modal">
               <div class="area-login">
-                <form
-                  action="./api/users/login.php"
-                  method="post"
-                  id="login-form"
-                >
+                <form id="login-usuario-form">
+                <span id="msgAlertErroLogin"></span>
+                <div class="signin-input">
                   <label for="user"
                     >Usuário: <br /><input
                       type="text"
-                      name="username"
-                      id="username" /></label
+                      name="user"
+                      id="user"
+                      required /></label
                   ><br />
+                  </div>
+                  <div class="signin-input">
                   <label for="password"
                     >Senha: <br />
-                    <input type="password" name="password" id="password"
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
                   /></label>
+                  </div>
                   <a href="recuperar-senha.html">Esqueceu sua senha?</a><br />
                   <br />
-                  <button type="submit" name="login" class="logarBtn">
+                  <button type="submit" name="login" class="logarBtn" id="login-usuario-btn">
                     Login
                   </button>
                 </form>
@@ -132,8 +113,7 @@ if (session_status() == PHP_SESSION_ACTIVE) {
                 </p>
                 <br />
                 <a
-                  href="registre.html"
-                  target="_blank"
+                  href="signup.html"
                   rel="noopener noreferrer"
                   >Registre-se</a
                 >
@@ -143,6 +123,8 @@ if (session_status() == PHP_SESSION_ACTIVE) {
         </div>
       </div>
     </div>
+
+    <script src="js/script.js"></script>
     <footer class="site-footer">
       <nav class="menu-footer">
         <h3 class="title-navegacao">Navegação</h3>
@@ -161,5 +143,6 @@ if (session_status() == PHP_SESSION_ACTIVE) {
         </p>
       </div>
     </footer>
+    </div>
   </body>
 </html>
