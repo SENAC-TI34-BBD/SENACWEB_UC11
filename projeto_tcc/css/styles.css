@@ -333,4 +333,8 @@
     margin-top: -105px;
     height: 100%;
   }
+  #msgAlertErroRegister {
+    color: red;
+    font-size: 12px;
+  }
 }

@@ -14,7 +14,7 @@ loginForm.addEventListener("submit", async (e) => {
   } else {
     const dadosForm = new FormData(loginForm);
 
-    const dados = await fetch("../projeto_tcc/content/validate.php", {
+    const dados = await fetch("../projeto_tcc/content/login_validate.php", {
       method: "POST",
       body: dadosForm,
     });

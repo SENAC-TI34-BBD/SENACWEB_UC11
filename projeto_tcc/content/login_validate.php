@@ -4,10 +4,6 @@ include_once "./config/connection.php";
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-/*$dados = [
-    "email" => "cesar@celke.com.br",
-    "senha" => "123456"
-];*/
 
 if(empty($dados['user'])){
     $retorna = ['erro'=> true, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Necessário preencher o campo usuário!</div>"];

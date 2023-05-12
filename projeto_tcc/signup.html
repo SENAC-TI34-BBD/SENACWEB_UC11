@@ -28,7 +28,9 @@
             <div class="form-right">
               <h1 class="signup-title">Crie sua conta</h1>
               <form id="registro-usuario-form" class="signup-form">
-                <span id="msgAlertErroLogin"></span>
+                <center>
+                  <span id="msgAlertErroRegister"></span>
+                </center>
                 <br />
                 <div class="signup-inputs">
                   <div class="signup-input" id="nome-block">
@@ -67,7 +69,7 @@
                     <label for="telefone"
                       >Telefone<br />
                       <input
-                        type="tel"
+                        type="text"
                         name="telefone"
                         id="telefone"
                         placeholder="Telefone"
@@ -142,6 +144,7 @@
                       class="genero"
                       id="naodizer"
                       value="vazio"
+                      checked
                     />
                     <label for="naodizer" class="label-genero"
                       >Não Informar</label
@@ -159,6 +162,7 @@
         </div>
       </div>
       <script src="js/password_validate.js"></script>
+      <script src="js/signup_validate.js"></script>
       <div class="logo-signup">
         <a href="index.html"
           ><img src="./assets/imgs/logo_normal.png" width="250px" alt="Logo"
