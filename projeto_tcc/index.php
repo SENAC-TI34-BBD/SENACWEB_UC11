@@ -30,9 +30,57 @@ session_start(); ?>
       integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
       crossorigin="anonymous"
     ></script>
+    <script src="https://kit.fontawesome.com/592119c07d.js" crossorigin="anonymous"></script>
+    <style>
+      #carregando {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: 1;
+      width: 60px;
+      height: 60px;
+      margin: -76px 0 0 -76px;
+      border: 5px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 5px solid #220845;
+      -webkit-animation: spin 0.6s linear infinite;
+      animation: spin 0.6s linear infinite;
+      }
+
+      @-webkit-keyframes spin {
+        0% { -webkit-transform: rotate(0deg); }
+        100% { -webkit-transform: rotate(360deg); }
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Add animation to "page content" */
+      .index-body {
+        position: relative;
+        -webkit-animation-name: animatebottom;
+        -webkit-animation-duration: 1s;
+        animation-name: animatebottom;
+        animation-duration: 1s
+      }
+
+      @-webkit-keyframes animatebottom {
+        from { bottom:-100px; opacity:0 } 
+        to { bottom:0px; opacity:1 }
+      }
+
+      @keyframes animatebottom { 
+        from{ bottom:-100px; opacity:0 } 
+        to{ bottom:0; opacity:1 }
+}
+    </style>
     <title>TravelNow - Seu próximo Destino</title>
   </head>
-  <body>
+  <body onload="loading()" style="margin:0;padding:0;">
+  <div id="carregando"></div>
+    <div style="display:none;" id="index-body">
     <div class="index-body">
     <header class="menu-container">
       <div class="logo">
@@ -45,15 +93,18 @@ session_start(); ?>
           <li>
             <a href="index.html" class="menu-item" id="menu-selected">Home</a>
           </li>
-          <li><a href="match.html" class="menu-item">Seu Match</a></li>
+          <li><a href="match.html" class="menu-item"><b>Travel</b>Match®</a></li>
           <li><a href="destinos.html" class="menu-item">Destinos</a></li>
           <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
       </nav>
-      <?php if (isset($_SESSION["id"]) and isset($_SESSION["nome"])) {
+      <?php if (isset($_SESSION["id"]) and isset($_SESSION["nome"]) and isset($_SESSION["sobrenome"])) {
         echo "<div id='dados-usuario'>";
-        echo "Bem vindo " . $_SESSION["nome"] . "<br>";
+        echo "<div id='profile-picture'> <img src='".$_SESSION["picture"]. "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%' </div>";
+        echo "<div id='profile-info'>";
+        echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] ."<br>";
         echo "<a href='./content/logout.php'>Sair</a><br>";
+        echo "</div>";
         echo "</div>";
       } else {
         echo "<div class='login-area'>";
@@ -82,21 +133,21 @@ session_start(); ?>
                 <form id="login-usuario-form">
                 <span id="msgAlertErroLogin"></span>
                 <div class="signin-input">
-                  <label for="user"
+                  <label for="email"
                     >E-mail: <br /><input
-                      type="text"
-                      name="user"
-                      id="user"
+                      type="email"
+                      name="email"
+                      id="email"
                       required /></label
                   ><br />
                   </div>
                   <div class="signin-input">
-                  <label for="password"
+                  <label for="senha"
                     >Senha: <br />
                     <input
                       type="password"
-                      name="password"
-                      id="password"
+                      name="senha"
+                      id="senha"
                   /></label>
                   </div>
                   <a href="recuperar-senha.html">Esqueceu sua senha?</a><br />
@@ -125,26 +176,157 @@ session_start(); ?>
         </div>
       </div>
     </div>
+      <article class="banner-topo">
+        <div class="texto-banner">
+          <h1 id="texto-1">Vamos viajar o</h1>
+          <h1 id="texto-2">mundo?</h1>
+          <br>
+          <br>
+          <p id="texto-3">
+            Encontre seu próximo destino com a TravelNow<br> e tenha uma experiência
+            única!</p>
 
-    <script src="js/login_validate.js"></script>
-    <footer class="site-footer">
+        </div>
+        <div class="imagem-destinos">
+          <img src="./assets/imgs/destinations.png" alt="Destinos">
+        </div>
+        <br>
+        
+      </article>
+      <div class="container-destinos">
+      <h3 id="texto-destinos">Destinos populares</h3>
+      <br>
+      <button id="slideBack" type="button" class="btn-scroll">⬅</button>
+      <div class="destinos" id="container-destinos">
+        <div id="destino">
+          <img src="./assets/imgs/destinos.png" id="destino-img">
+          <h4 id="destino-texto">Destino 1</h4>
+        </div>
+        <div id="destino">
+          <img src="./assets/imgs/destinos.png" id="destino-img">
+          <h4 id="destino-texto">Destino 2</h4>
+        </div>
+        <div id="destino">
+          <img src="./assets/imgs/destinos.png" id="destino-img">
+          <h4 id="destino-texto">Destino 3</h4>
+        </div>
+        <div id="destino">
+          <img src="./assets/imgs/destinos.png" id="destino-img">
+          <h4 id="destino-texto">Destino 4</h4>
+        </div>
+        <div id="destino">
+          <img src="./assets/imgs/destinos.png" id="destino-img">
+          <h4 id="destino-texto">Destino 5</h4>
+        </div>
+        <div id="destino">
+          <img src="./assets/imgs/destinos.png" id="destino-img">
+          <h4 id="destino-texto">Destino 6</h4>
+        </div>
+        <div id="destino">
+          <img src="./assets/imgs/destinos.png" id="destino-img">
+          <h4 id="destino-texto">Destino 7</h4>
+        </div>
+
+    </div>
+    <button id="slide" type="button" class="btn-scroll">➡</i></button>
+    </div>
+
+    <div class="travelmatch-banner">
+    <h1 id="logo-travelmatch">
+      <b>Travel</b>Match®
+    </h1>
+    <br>
+    <p id="texto-travelmatch">
+      Utilize nossa inteligência artificial e descubra seu próximo destino!
+    </br>
+    <center><a href="/match.html" class="travelmatch-link">Experimente ➜</a></center>
+    </div>
+
+    <div class="parceiros">
+      <div class="parceiro">
+        <img src="./assets/svg/airbnb.svg" alt="AirBnB" id="parceiro-img">
+      </div>
+      <div class="parceiro">
+        <img src="./assets/svg/skyscanner.svg" alt="SkyScanner" id="parceiro-img">
+      </div>
+      <div class="parceiro">
+        <img src="./assets/svg/tripadvisor.svg" alt="TripAdvisor" id="parceiro-img">
+      </div>
+      <div class="parceiro">
+        <img src="./assets/svg/bookingcom.svg" alt="Booking" id="parceiro-img">
+      </div>
+    </div>
+
+      <footer class="site-footer">
       <nav class="menu-footer">
         <h3 class="title-navegacao">Navegação</h3>
         <ul class="menu-list-footer">
           <li>
             <a href="index.html" class="menu-item-footer">Home</a>
           </li>
-          <li><a href="match.html" class="menu-item-footer">Seu Match</a></li>
+          <li><a href="match.html" class="menu-item-footer"><b>Travel</b>Match®</a></li>
           <li><a href="destinos.html" class="menu-item-footer">Destinos</a></li>
           <li><a href="contato.html" class="menu-item-footer">Contato</a></li>
         </ul>
+
       </nav>
-      <div class="copy-box">
-        <p class="copy-text">
-          &copy; Todos direitos reservados a <b>TravelNow - Igor Sardinha.</b>
+      <center>
+      <p class="copy-text">
+          &copy; Todos direitos reservados a <b>TravelNow</b>
         </p>
-      </div>
+        </center>
+
+        <nav class="social-menu-footer">
+        <ul class="social-menu-list-footer">
+          <li class="social-icons"><a href="https://instagram.com/igor.sardinha" target="__blank"><i class="fa-brands fa-instagram fa-2x" id="icone-social"></i></a></li>
+          <li class="social-icons"><a href="https://github.com/igorsardinha" target="__blank"><i class="fa-brands fa-github fa-2x" id="icone-social"></i></a></li>
+          <li class="social-icons"><a href="https://linkedin.com/in/igorsardinha" target="__blank"><i class="fa-brands fa-linkedin fa-2x" id="icone-social"></i></a></li>
+        </ul>
+
+      </nav>
     </footer>
     </div>
+    </div>
+    <script>
+  var variavel;
+
+      function loading() {
+        variavel = setTimeout(showPage, 1200);
+      }
+
+    function showPage() {
+      document.getElementById("carregando").style.display = "none";
+      document.getElementById("index-body").style.display = "block";
+    }
+
+    var button = document.getElementById('slide');
+    button.onclick = function () {
+        var container = document.getElementById('container-destinos');
+        sideScroll(container,'right',25,100,10);
+    };
+
+    var back = document.getElementById('slideBack');
+    back.onclick = function () {
+        var container = document.getElementById('container-destinos');
+        sideScroll(container,'left',25,100,10);
+    };
+
+function sideScroll(element,direction,speed,distance,step){
+    scrollAmount = 0;
+    var slideTimer = setInterval(function(){
+        if(direction == 'left'){
+            element.scrollLeft -= step;
+        } else {
+            element.scrollLeft += step;
+        }
+        scrollAmount += step;
+        if(scrollAmount >= distance){
+            window.clearInterval(slideTimer);
+        }
+    }, speed);
+}
+
+</script>
+    <script src="js/login_validate.js"></script>
   </body>
 </html>
