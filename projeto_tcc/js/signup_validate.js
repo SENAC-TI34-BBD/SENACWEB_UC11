@@ -27,7 +27,7 @@ RegisterForm.addEventListener("submit", async (e) => {
     document.getElementById("confirmar-senha").value
   ) {
     msgAlertErroRegister.innerHTML =
-      "<span id='msgAlertErroRegister' style='text-size: 12pt;color: #D50000;'>Erro: As senhas digitas não são iguais!</span>";
+      "<span id='msgAlertErroRegister' style='text-size: 12pt;color: #D50000;'>Erro: As senhas digitadas não são iguais!</span>";
   } else {
     const dadosForm = new FormData(RegisterForm);
 

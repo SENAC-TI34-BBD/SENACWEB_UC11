@@ -100,11 +100,12 @@ session_start(); ?>
       </nav>
       <?php if (isset($_SESSION["id"]) and isset($_SESSION["nome"]) and isset($_SESSION["sobrenome"])) {
         echo "<div id='dados-usuario'>";
-        echo "<div id='profile-picture'> <img src='".$_SESSION["picture"]. "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%' </div>";
+        echo "<div id='profile-picture'><a href='profile.php'><img src='".$_SESSION["picture"]. "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%'></a> </div>";
         echo "<div id='profile-info'>";
         echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] ."<br>";
         echo "<a href='./content/logout.php'>Sair</a><br>";
-        echo "</div>";
+        echo "</div><br><br>";
+        //echo "<span id='editar-perfil' style='display:none'>Editar perfil</span>";
         echo "</div>";
       } else {
         echo "<div class='login-area'>";
@@ -244,22 +245,25 @@ session_start(); ?>
 
     <div class="parceiros">
       <div class="parceiro">
-        <img src="./assets/svg/airbnb.svg" alt="AirBnB" id="parceiro-img">
+        <img title="AirBnB" src="./assets/svg/airbnb.svg" alt="AirBnB" id="parceiro-img">
       </div>
       <div class="parceiro">
-        <img src="./assets/svg/skyscanner.svg" alt="SkyScanner" id="parceiro-img">
+        <img title="SkyScanner" src="./assets/svg/skyscanner.svg" alt="SkyScanner" id="parceiro-img">
       </div>
       <div class="parceiro">
-        <img src="./assets/svg/tripadvisor.svg" alt="TripAdvisor" id="parceiro-img">
+        <img title="TripAdvisor" src="./assets/svg/tripadvisor.svg" alt="TripAdvisor" id="parceiro-img">
       </div>
       <div class="parceiro">
-        <img src="./assets/svg/bookingcom.svg" alt="Booking" id="parceiro-img">
+        <img title="Booking.com" src="./assets/svg/bookingcom.svg" alt="Booking" id="parceiro-img">
+      </div>
+      <div class="parceiro">
+        <img title="Latam" src="./assets/svg/latam.svg" alt="Latam" id="parceiro-img">
       </div>
     </div>
 
       <footer class="site-footer">
       <nav class="menu-footer">
-        <h3 class="title-navegacao">Navegação</h3>
+        <h4 class="title-navegacao">Navegação</h4>
         <ul class="menu-list-footer">
           <li>
             <a href="index.html" class="menu-item-footer">Home</a>
@@ -324,6 +328,16 @@ function sideScroll(element,direction,speed,distance,step){
             window.clearInterval(slideTimer);
         }
     }, speed);
+}
+
+document.getElementById("dados-usuario").onmouseover = function() {mostraEditar()};
+document.getElementById("dados-usuario").onmouseout = function() {ocultaEditar()};
+
+function mostraEditar(){
+  document.getElementById("editar-perfil").style.display = "block";
+}
+function ocultaEditar(){
+  document.getElementById("editar-perfil").style.display = "none";
 }
 
 </script>

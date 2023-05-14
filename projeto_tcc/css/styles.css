@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 @media screen {
   .index-body {
     background-color: rgba(245, 245, 245, 0.341);
@@ -10,6 +11,11 @@
   .logo {
     margin-top: 40px;
     margin-left: 10%;
+    display: block;
+  }
+  .logo-profile {
+    margin-top: -20px;
+    text-align: center;
     display: block;
   }
   .menu-container {
@@ -46,7 +52,6 @@
     font-family: "Poppins", sans-serif;
     display: flex;
     justify-content: space-between;
-
     align-items: center;
     width: 100%;
     height: 100%;
@@ -154,7 +159,7 @@
   }
   .site-footer {
     position: absolute;
-    background-color: #db2e53;
+    background-color: #92243b;
     font-family: "Poppins", sans-serif;
     color: #ffffff;
     width: 100%;
@@ -226,6 +231,12 @@
     flex-direction: row;
     align-items: center;
     margin-top: 20px;
+    margin-left: 40px;
+  }
+  .profile-back {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
     margin-left: 40px;
   }
   #url-back {
@@ -431,7 +442,6 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background-color: #db2e53;
     width: 100px;
     height: 100px;
   }
@@ -526,8 +536,8 @@
     align-items: center;
   }
   #parceiro-img {
-    width: 210px;
-    height: 210px;
+    width: 160px;
+    height: 160px;
     cursor: pointer;
   }
   .social-menu-footer {
@@ -559,5 +569,82 @@
   #icone-social {
     width: 60px;
     height: 60px;
+  }
+
+  .profile-container {
+    width: 1280px;
+    height: 680px;
+    margin-top: 150px;
+    padding-left: 200px;
+    font-family: "Poppins", sans-serif;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+  }
+
+  .profile-input input[type="text"],
+  .profile-input input[type="password"],
+  .profile-input input[type="email"] {
+    width: 400px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+
+  .profile-picture {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #d0d0d0;
+    cursor: pointer;
+  }
+  .profile-name {
+    font-family: "Poppins", sans-serif;
+    font-size: 24pt;
+    font-weight: 600;
+    color: #1b1b1b;
+    margin-top: 20px;
+    text-align: center;
+  }
+  .profile-title {
+    font-family: "Poppins", sans-serif;
+    font-size: 28pt;
+    font-weight: 600;
+    color: #220845;
+    margin-top: 150px;
+    text-align: center;
+  }
+  .AtualizarPerfilBtn {
+    font-family: "Poppins", sans-serif;
+    background-color: #db2e53;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+    width: 300px;
+  }
+  .profile-picture-editor {
+    margin-top: -350px;
+    text-align: center;
+  }
+  #editar-perfil {
+    padding: 10px;
+    background-color: #ececec;
+    color: #000000;
+    font-size: 10pt;
+  }
+  .profile-info {
+    align-items: left;
+    background-color: #ececec;
+    border-radius: 5px;
+    padding: 20px;
   }
 }
