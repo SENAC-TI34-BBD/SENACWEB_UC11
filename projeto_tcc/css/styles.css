@@ -593,6 +593,9 @@
     box-sizing: border-box;
     border-radius: 5px;
   }
+  .profile-input input[type="email"] {
+    cursor: not-allowed;
+  }
 
   .profile-picture {
     width: 200px;
