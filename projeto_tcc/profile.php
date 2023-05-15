@@ -120,6 +120,10 @@ header("Location: index.php");
     <p class="profile-created"><b>Criado:</b> <?php echo $create; ?></p>
     <p class="profile-updated"><b>Atualizado:</b> <?php echo $update; ?></p>
     </div>
+    <br>
+    <center>
+        <span id="msgAlertErroProfile"></span>
+        </center> 
     </div>
         <form method="post" id="profile-editor-form">
         <h3>Alteração de dados:</h3>
@@ -152,16 +156,17 @@ header("Location: index.php");
             </div>
             <span style="font-size: 8pt;color:#D50000; float:right;">* Edição não permitida</span>
             <div class="profile-input">
-            <label for="email">Email<span style="color:#D50000;">*</span></label>
+            <label for="email-show">Email<span style="color:#D50000;">*</span></label>
             <br>
             <input
               type="email"
-              name="email"
-              id="email"
+              name="email-show"
+              id="email-show"
               placeholder="Email"
               disabled
               value="<?php echo $email; ?>"
             />
+            <input type="hidden" name="email" id="email" value="<?php echo $email; ?>"/>
             </div>
             <div class="profile-input">
             <label for="telefone">Telefone</label>
@@ -197,7 +202,7 @@ header("Location: index.php");
                     </center>
             </div>  
             <div class="profile-input">
-            <label for="confirma-senha">Confirmar Nova Senha</label>
+            <label for="confirmar-senha">Confirmar Nova Senha</label>
             <br>
             <input
               type="password"
@@ -226,7 +231,7 @@ header("Location: index.php");
             <br>
             <div class="profile-input">
             <center><input type="submit" value="Atualizar Perfil" name="update" class="AtualizarPerfilBtn"/><center>
-            </div>
+          </div>
         </form>
         </div>
         <footer class="site-footer" style="margin-top: 250px">

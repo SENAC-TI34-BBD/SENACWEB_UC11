@@ -25,6 +25,7 @@ if(empty($dados['email'])){
             $_SESSION['nome'] =  $row_usuario['nome'];
             $_SESSION['sobrenome'] =  $row_usuario['sobrenome'];
             $_SESSION['picture'] =  $row_usuario['picture'];
+            $_SESSION['senha'] =  $row_usuario['senha'];
 
             $retorna = ['erro'=> false, 'dados' => $row_usuario];
         }else{

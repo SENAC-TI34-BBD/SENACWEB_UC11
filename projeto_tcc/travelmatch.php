@@ -30,6 +30,7 @@ header("Location: index.php");
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/travelmatch.css" />
     <link rel="icon" type="image/x-icon" href="assets/imgs/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -114,9 +115,9 @@ header("Location: index.php");
       <nav class="menu">
         <ul class="menu-list">
           <li>
-            <a href="index.html" class="menu-item" id="menu-selected">Home</a>
+            <a href="index.php" class="menu-item">Home</a>
           </li>
-          <li><a href="travelmatch.php" class="menu-item"><b>Travel</b>Match®</a></li>
+          <li><a href="match.html" class="menu-item" id="menu-selected"><b>Travel</b>Match®</a></li>
           <li><a href="destinos.html" class="menu-item">Destinos</a></li>
           <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
@@ -126,7 +127,7 @@ header("Location: index.php");
         echo "<div id='profile-picture'><a href='profile.php'><img src='".$_SESSION["picture"]. "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%'></a> </div>";
         echo "<div id='profile-info'>";
         echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] ."<br>";
-        echo "<a href='./content/logout.php'>Sair</a><br>";
+        echo "<a href='./content/logout_travelmatch.php'>Sair</a><br>";
         echo "</div><br><br>";
         //echo "<span id='editar-perfil' style='display:none'>Editar perfil</span>";
         echo "</div>";
@@ -200,96 +201,88 @@ header("Location: index.php");
         </div>
       </div>
     </div>
-      <article class="banner-topo">
-        <div class="texto-banner">
-          <h1 id="texto-1">Vamos viajar o</h1>
-          <h1 id="texto-2">mundo?</h1>
-          <br>
-          <br>
-          <p id="texto-3">
-            Encontre seu próximo destino com a TravelNow<br> e tenha uma experiência
-            única!</p>
-
-        </div>
-        <div class="imagem-destinos">
-          <img src="./assets/imgs/destinations.png" alt="Destinos">
-        </div>
-        <br>
-        
-      </article>
-      <div class="container-destinos">
-      <h3 id="texto-destinos">Destinos populares</h3>
-      <br>
-      <button id="slideBack" type="button" class="btn-scroll">⬅</button>
-      <div class="destinos" id="container-destinos">
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 1</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 2</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 3</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 4</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 5</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 6</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 7</h4>
-        </div>
-
+      
+    <div class="container-travelmatch">
+      <div class="inicio-teste">
+      <h1 class="titulo-banner">
+        <b>Travel</b>Match®
+        </h1>
+        <p class="subtitulo-banner">
+          Encontre seu próximo destino com base em suas preferências
+        </p>
+      </h1>
+      <button type="button" id="inicioBtn" onclick="nextPrev(1)">Iniciar</button>
+      </div>
+      <div class="tab">
+        <p id="pergunta">1. Qual é o seu tipo de clima favorito?</p>
+      <label for="P1_A"><input type="radio" name="pergunta1" id="P1_A" value="1A">Quente e ensolarado</label>
+      <label for="P1_B"><input type="radio" name="pergunta1" id="P1_B" value="1B">Frio e nevado</label>
+      <label for="P1_C"><input type="radio" name="pergunta1" id="P1_C" value="1C">Ameno e fresco</label>
+      <label for="P1_D"><input type="radio" name="pergunta1" id="P1_D" value="1D">Úmido e chuvoso</label>
+      <label for="P1_E"><input type="radio" name="pergunta1" id="P1_E" value="1E">Seco e árido</label>
     </div>
-    <button id="slide" type="button" class="btn-scroll">➡</i></button>
+    <div class="tab">
+    <p id="pergunta">2. Qual tipo de comida você mais gosta?</p>
+      <label for="P2_A"><input type="radio" name="pergunta2" id="P2_A" value="2A">Comida italiana</label>
+      <label for="P2_B"><input type="radio" name="pergunta2" id="P2_B" value="2B">Comida asiática</label>
+      <label for="P2_C"><input type="radio" name="pergunta2" id="P2_C" value="2C">Comida mexicana</label>
+      <label for="P2_D"><input type="radio" name="pergunta2" id="P2_D" value="2D">Comida brasileira</label>
+      <label for="P2_E"><input type="radio" name="pergunta2" id="P2_E" value="2E">Comida mediterrânea</label>
     </div>
-
-    <div class="travelmatch-banner">
-    <h1 id="logo-travelmatch">
-      <b>Travel</b>Match®
-    </h1>
-    <br>
-    <p id="texto-travelmatch">
-      Utilize nossa inteligência artificial e descubra seu próximo destino!
-    </br>
-    <center><a href="/match.html" class="travelmatch-link">Experimente ➜</a></center>
+    <div class="tab">
+    <p id="pergunta">3. Qual tipo de atividade você prefere fazer durante as férias?</p>
+      <label for="P3_A"><input type="radio" name="pergunta3" id="P3_A" value="3A">Relaxar na praia</label>
+      <label for="P3_B"><input type="radio" name="pergunta3" id="P3_B" value="3B">Fazer trilhas em montanhas</label>
+      <label for="P3_C"><input type="radio" name="pergunta3" id="P3_C" value="3C">Visitar museus e monumentos históricos</label>
+      <label for="P3_D"><input type="radio" name="pergunta3" id="P3_D" value="3D">Participar de atividades esportivas</label>
+      <label for="P3_E"><input type="radio" name="pergunta3" id="P3_E" value="3E">Fazer compras</label>
     </div>
-
-    <div class="parceiros">
-      <div class="parceiro">
-        <img title="AirBnB" src="./assets/svg/airbnb.svg" alt="AirBnB" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="SkyScanner" src="./assets/svg/skyscanner.svg" alt="SkyScanner" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="TripAdvisor" src="./assets/svg/tripadvisor.svg" alt="TripAdvisor" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="Booking.com" src="./assets/svg/bookingcom.svg" alt="Booking" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="Latam" src="./assets/svg/latam.svg" alt="Latam" id="parceiro-img">
-      </div>
+    <div class="tab">
+    <p id="pergunta">4. Qual é o seu tipo de hospedagem preferido?</p>
+      <label for="P4_A"><input type="radio" name="pergunta4" id="P4_A" value="4A">Hotel de luxo</label>
+      <label for="P4_B"><input type="radio" name="pergunta4" id="P4_B" value="4B">Casa de férias</label>
+      <label for="P4_C"><input type="radio" name="pergunta4" id="P4_C" value="4C">Hostel</label>
+      <label for="P4_D"><input type="radio" name="pergunta4" id="P4_D" value="4D">Camping</label>
+      <label for="P4_E"><input type="radio" name="pergunta4" id="P4_E" value="4E">Airbnb</label>
+    </div>
+    <div class="tab">
+    <p id="pergunta">5. Qual é o seu tipo de transporte preferido durante uma viagem?</p>
+      <label for="P5_A"><input type="radio" name="pergunta5" id="P5_A" value="5A">Carro alugado</label>
+      <label for="P5_B"><input type="radio" name="pergunta5" id="P5_B" value="5B">Trem</label>
+      <label for="P5_C"><input type="radio" name="pergunta5" id="P5_C" value="5C">Avião</label>
+      <label for="P5_D"><input type="radio" name="pergunta5" id="P5_D" value="5D">Ônibus</label>
+      <label for="P5_E"><input type="radio" name="pergunta5" id="P5_E" value="5E">Moto</label>
+    </div>
+    <div class="tab">
+    <p id="pergunta">6. Qual é o tipo de paisagem que mais lhe atrai?</p>
+      <label for="P6_A"><input type="radio" name="pergunta6" id="P6_A" value="6A">Praias paradisíacas</label>
+      <label for="P6_B"><input type="radio" name="pergunta6" id="P6_B" value="6B">Cânions e montanhas rochosas</label>
+      <label for="P6_C"><input type="radio" name="pergunta6" id="P6_C" value="6C">Campos verdes e paisagens rurais</label>
+      <label for="P6_D"><input type="radio" name="pergunta6" id="P6_D" value="6D">Florestas tropicais</label>
+      <label for="P6_E"><input type="radio" name="pergunta6" id="P6_E" value="6E">Desertos e paisagens áridas</label>
+    </div>
+    <div class="tab">
+    <p id="pergunta">7. Qual é o tipo de música que você mais gosta??</p>
+      <label for="P7_A"><input type="radio" name="pergunta7" id="P7_A" value="7A">Pop</label>
+      <label for="P7_B"><input type="radio" name="pergunta7" id="P7_B" value="7B">Rock</label>
+      <label for="P7_C"><input type="radio" name="pergunta7" id="P7_C" value="7C">Eletrônica</label>
+      <label for="P7_D"><input type="radio" name="pergunta7" id="P7_D" value="7D">Samba e pagode</label>
+      <label for="P7_E"><input type="radio" name="pergunta7" id="P7_E" value="7E">Sertanejo</label>
+    </div>
+      <div style="overflow:auto;">
+    <div style="text-align:center;">
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Proxima</button>
+    </div>
+  </div>
     </div>
 
-      <footer class="site-footer">
+      <footer class="site-footer" style="margin-top: 40%">
       <nav class="menu-footer">
         <h4 class="title-navegacao">Navegação</h4>
         <ul class="menu-list-footer">
           <li>
-            <a href="index.html" class="menu-item-footer">Home</a>
+            <a href="index.php" class="menu-item-footer">Home</a>
           </li>
           <li><a href="travelmatch.php" class="menu-item-footer"><b>Travel</b>Match®</a></li>
           <li><a href="destinos.html" class="menu-item-footer">Destinos</a></li>
@@ -312,6 +305,7 @@ header("Location: index.php");
 
       </nav>
     </footer>
+    </div>
     </div>
     </div>
     <script>
