@@ -1,26 +1,39 @@
 <?php
-include('./content/config/connection.php');
+include "./content/config/connection.php";
+
 session_start();
-if (isset($_SESSION['id'])) {
-  $id=$_SESSION['id'];
+
+$query_destino = "SELECT id, destino,foto
+FROM destinos
+ORDER BY id
+LIMIT 10";
+$result_destino = $conn->prepare($query_destino);
+$result_destino->execute();
+
+if ($result_destino and $result_destino->rowCount() != 0) {
+  $row_destino = $result_destino->fetchAll();
+}
+
+if (isset($_SESSION["id"])) {
+  $id = $_SESSION["id"];
   $query_profile = "SELECT id, senha
   FROM usuarios
   WHERE id=:id
   LIMIT 1";
-$result_profile = $conn->prepare($query_profile);
-$result_profile->bindParam(':id', $id, PDO::PARAM_STR);
-$result_profile->execute();
+  $result_profile = $conn->prepare($query_profile);
+  $result_profile->bindParam(":id", $id, PDO::PARAM_STR);
+  $result_profile->execute();
 
-if(($result_profile) and ($result_profile->rowCount() != 0)){
-  $row_profile = $result_profile->fetch(PDO::FETCH_ASSOC);
-  $senha = $row_profile['senha'];
-  if ($_SESSION["senha"] != $senha ) {
-    session_destroy();
+  if ($result_profile and $result_profile->rowCount() != 0) {
+    $row_profile = $result_profile->fetch(PDO::FETCH_ASSOC);
+    $senha = $row_profile["senha"];
+    if ($_SESSION["senha"] != $senha) {
+      session_destroy();
+      header("Location: index.php");
+    }
+  } else {
     header("Location: index.php");
-}
-} else{
-header("Location: index.php");
-}
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -121,11 +134,17 @@ header("Location: index.php");
           <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
       </nav>
-      <?php if (isset($_SESSION["id"]) and isset($_SESSION["nome"]) and isset($_SESSION["sobrenome"])) {
+      <?php if (
+        isset($_SESSION["id"]) and
+        isset($_SESSION["nome"]) and
+        isset($_SESSION["sobrenome"])
+      ) {
         echo "<div id='dados-usuario'>";
-        echo "<div id='profile-picture'><a href='profile.php'><img src='".$_SESSION["picture"]. "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%'></a> </div>";
+        echo "<div id='profile-picture'><a href='profile.php'><img src='" .
+          $_SESSION["picture"] .
+          "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%'></a> </div>";
         echo "<div id='profile-info'>";
-        echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] ."<br>";
+        echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] . "<br>";
         echo "<a href='./content/logout.php'>Sair</a><br>";
         echo "</div><br><br>";
         //echo "<span id='editar-perfil' style='display:none'>Editar perfil</span>";
@@ -222,34 +241,20 @@ header("Location: index.php");
       <br>
       <button id="slideBack" type="button" class="btn-scroll">⬅</button>
       <div class="destinos" id="container-destinos">
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 1</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 2</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 3</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 4</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 5</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 6</h4>
-        </div>
-        <div id="destino">
-          <img src="./assets/imgs/destinos.png" id="destino-img">
-          <h4 id="destino-texto">Destino 7</h4>
-        </div>
+      <?php
+      $results = count($row_destino);
+      foreach ($row_destino as $destinos) {
+        echo "
+          <div id='destino'>
+          <img src='" .
+          $row_destino["foto"] .
+          "' id='destino-img'>
+          <h4 id='destino-texto'>" .
+          $row_destino["destino"] .
+          "</h4>
+        </div>";
+      }
+      ?>
 
     </div>
     <button id="slide" type="button" class="btn-scroll">➡</i></button>

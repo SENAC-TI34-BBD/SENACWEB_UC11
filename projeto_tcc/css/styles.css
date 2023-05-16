@@ -215,7 +215,7 @@
     background-color: #ffffff;
     border-radius: 7px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 180px;
     font-family: "Poppins", sans-serif;
     justify-content: space-around;
     align-items: center;
@@ -510,7 +510,7 @@
     margin-top: 20px;
   }
   .travelmatch-link:hover {
-    background-color: #5099ff;
+    background-color: #76afff;
     text-decoration: none;
     cursor: pointer;
     color: #ffffff;

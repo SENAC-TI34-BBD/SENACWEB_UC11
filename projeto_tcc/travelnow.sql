@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13-Maio-2023 às 02:00
+-- Tempo de geração: 16-Maio-2023 às 03:14
 -- Versão do servidor: 10.4.25-MariaDB
 -- versão do PHP: 8.1.10
 
@@ -24,29 +24,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `users_login`
+-- Estrutura da tabela `destinos`
 --
 
-CREATE TABLE `users_login` (
-  `user_id` int(20) NOT NULL,
-  `name` varchar(50) NOT NULL,
-  `username` varchar(16) NOT NULL,
-  `email` varchar(40) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `picture` varchar(256) NOT NULL,
-  `active` int(1) NOT NULL DEFAULT 1,
-  `profile_type` int(1) NOT NULL DEFAULT 1,
-  `user_hash` varchar(100) NOT NULL,
-  `create_at` datetime NOT NULL DEFAULT current_timestamp(),
-  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `destinos` (
+  `id` int(255) NOT NULL,
+  `destino` varchar(32) NOT NULL,
+  `descricao` varchar(1024) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `match_resps` varchar(255) DEFAULT NULL,
+  `created_at` date DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Extraindo dados da tabela `users_login`
+-- Extraindo dados da tabela `destinos`
 --
 
-INSERT INTO `users_login` (`user_id`, `name`, `username`, `email`, `password`, `picture`, `active`, `profile_type`, `user_hash`, `create_at`, `updated_at`) VALUES
-(1, 'Igor Sardinha', 'igor.sardinha', 'igor.sardinha@outlook.com', 'MTIzNDU2', 'https://i.imgur.com/11fE8Wf.png', 1, 2, '1', '2023-05-09 19:05:51', '2023-05-09 20:19:18');
+INSERT INTO `destinos` (`id`, `destino`, `descricao`, `foto`, `match_resps`, `created_at`, `updated_at`) VALUES
+(1, 'Paris', 'adafasdfadsfadsf', 'https://i.imgur.com/RfPC9Jg.jpg', 'adadsfadsf', '2023-05-15', '2023-05-15 22:06:23'),
+(2, 'Paris', 'adafasdfadsfadsf', 'https://i.imgur.com/RfPC9Jg.jpg', 'adadsfadsf', '2023-05-15', '2023-05-15 22:06:33');
 
 -- --------------------------------------------------------
 
@@ -67,15 +64,21 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `sobrenome`, `email`, `telefone`, `senha`, `picture`, `create_at`, `updated_at`) VALUES
+(0, 'Ketryn', 'Santos', 'ketrynst@gmail.com', '17992562834', '$2y$10$L3X5KTPrK7hMSr.cjhYWL.w.RljDypX0tc1v.tAXpNTbiUf.ROWsG', NULL, '2023-05-15 21:50:32', '2023-05-15 21:52:07');
+
+--
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `users_login`
+-- Índices para tabela `destinos`
 --
-ALTER TABLE `users_login`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `username` (`username`);
+ALTER TABLE `destinos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `usuarios`
@@ -89,10 +92,10 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de tabela `users_login`
+-- AUTO_INCREMENT de tabela `destinos`
 --
-ALTER TABLE `users_login`
-  MODIFY `user_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `destinos`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

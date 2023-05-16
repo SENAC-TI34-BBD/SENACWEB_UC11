@@ -1,26 +1,26 @@
 <?php
-include('./content/config/connection.php');
+include "./content/config/connection.php";
 session_start();
-if (isset($_SESSION['id'])) {
-  $id=$_SESSION['id'];
+if (isset($_SESSION["id"])) {
+  $id = $_SESSION["id"];
   $query_profile = "SELECT id, senha
   FROM usuarios
   WHERE id=:id
   LIMIT 1";
-$result_profile = $conn->prepare($query_profile);
-$result_profile->bindParam(':id', $id, PDO::PARAM_STR);
-$result_profile->execute();
+  $result_profile = $conn->prepare($query_profile);
+  $result_profile->bindParam(":id", $id, PDO::PARAM_STR);
+  $result_profile->execute();
 
-if(($result_profile) and ($result_profile->rowCount() != 0)){
-  $row_profile = $result_profile->fetch(PDO::FETCH_ASSOC);
-  $senha = $row_profile['senha'];
-  if ($_SESSION["senha"] != $senha ) {
-    session_destroy();
+  if ($result_profile and $result_profile->rowCount() != 0) {
+    $row_profile = $result_profile->fetch(PDO::FETCH_ASSOC);
+    $senha = $row_profile["senha"];
+    if ($_SESSION["senha"] != $senha) {
+      session_destroy();
+      header("Location: index.php");
+    }
+  } else {
     header("Location: index.php");
-}
-} else{
-header("Location: index.php");
-}
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -122,11 +122,17 @@ header("Location: index.php");
           <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
       </nav>
-      <?php if (isset($_SESSION["id"]) and isset($_SESSION["nome"]) and isset($_SESSION["sobrenome"])) {
+      <?php if (
+        isset($_SESSION["id"]) and
+        isset($_SESSION["nome"]) and
+        isset($_SESSION["sobrenome"])
+      ) {
         echo "<div id='dados-usuario'>";
-        echo "<div id='profile-picture'><a href='profile.php'><img src='".$_SESSION["picture"]. "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%'></a> </div>";
+        echo "<div id='profile-picture'><a href='profile.php'><img src='" .
+          $_SESSION["picture"] .
+          "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%'></a> </div>";
         echo "<div id='profile-info'>";
-        echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] ."<br>";
+        echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] . "<br>";
         echo "<a href='./content/logout_travelmatch.php'>Sair</a><br>";
         echo "</div><br><br>";
         //echo "<span id='editar-perfil' style='display:none'>Editar perfil</span>";
@@ -203,7 +209,9 @@ header("Location: index.php");
     </div>
       
     <div class="container-travelmatch">
-      <div class="inicio-teste">
+      <form id="form-travelmatch" action="#" method="get">
+      <div class="tab">
+        <div class="teste-tabs"> 
       <h1 class="titulo-banner">
         <b>Travel</b>Match®
         </h1>
@@ -211,84 +219,122 @@ header("Location: index.php");
           Encontre seu próximo destino com base em suas preferências
         </p>
       </h1>
-      <button type="button" id="inicioBtn" onclick="nextPrev(1)">Iniciar</button>
+      </div>
       </div>
       <div class="tab">
-        <p id="pergunta">1. Qual é o seu tipo de clima favorito?</p>
-      <label for="P1_A"><input type="radio" name="pergunta1" id="P1_A" value="1A">Quente e ensolarado</label>
-      <label for="P1_B"><input type="radio" name="pergunta1" id="P1_B" value="1B">Frio e nevado</label>
-      <label for="P1_C"><input type="radio" name="pergunta1" id="P1_C" value="1C">Ameno e fresco</label>
-      <label for="P1_D"><input type="radio" name="pergunta1" id="P1_D" value="1D">Úmido e chuvoso</label>
-      <label for="P1_E"><input type="radio" name="pergunta1" id="P1_E" value="1E">Seco e árido</label>
+        <p id="pergunta"><span id="num-pergunta">1.</span> Qual é o seu tipo de clima favorito?</p>
+        <center>
+      <input type="radio" name="pergunta1" id="P1_A" class="input-pergunta" value="1A"> <label for="P1_A" class="label-pergunta" id="label-pergunta">Quente e ensolarado</label>
+      <input type="radio" name="pergunta1" id="P1_B" class="input-pergunta" value="1B"> <label for="P1_B" class="label-pergunta" id="label-pergunta">Frio e nevado</label>
+      <input type="radio" name="pergunta1" id="P1_C" class="input-pergunta" value="1C"> <label for="P1_C" class="label-pergunta" id="label-pergunta">Ameno e fresco</label>
+      <input type="radio" name="pergunta1" id="P1_D" class="input-pergunta" value="1D"> <label for="P1_D" class="label-pergunta" id="label-pergunta">Úmido e chuvoso</label>
+      <input type="radio" name="pergunta1" id="P1_E" class="input-pergunta" value="1E"> <label for="P1_E" class="label-pergunta" id="label-pergunta">Seco e árido</label>
+      </center>
     </div>
     <div class="tab">
-    <p id="pergunta">2. Qual tipo de comida você mais gosta?</p>
-      <label for="P2_A"><input type="radio" name="pergunta2" id="P2_A" value="2A">Comida italiana</label>
-      <label for="P2_B"><input type="radio" name="pergunta2" id="P2_B" value="2B">Comida asiática</label>
-      <label for="P2_C"><input type="radio" name="pergunta2" id="P2_C" value="2C">Comida mexicana</label>
-      <label for="P2_D"><input type="radio" name="pergunta2" id="P2_D" value="2D">Comida brasileira</label>
-      <label for="P2_E"><input type="radio" name="pergunta2" id="P2_E" value="2E">Comida mediterrânea</label>
+    <p id="pergunta"><span id="num-pergunta">2.</span> Qual tipo de comida você mais gosta?</p>
+    <center>
+      <input type="radio" name="pergunta2" id="P2_A" class="input-pergunta" value="2A"><label for="P2_A" class="label-pergunta" id="label-pergunta">Comida italiana</label>
+      <input type="radio" name="pergunta2" id="P2_B" class="input-pergunta" value="2B"><label for="P2_B" class="label-pergunta" id="label-pergunta">Comida asiática</label>
+      <input type="radio" name="pergunta2" id="P2_C" class="input-pergunta" value="2C"><label for="P2_C" class="label-pergunta" id="label-pergunta">Comida mexicana</label>
+      <input type="radio" name="pergunta2" id="P2_D" class="input-pergunta" value="2D"><label for="P2_D" class="label-pergunta" id="label-pergunta">Comida brasileira</label>
+      <input type="radio" name="pergunta2" id="P2_E" class="input-pergunta" value="2E"><label for="P2_E" class="label-pergunta" id="label-pergunta">Comida mediterrânea</label>
+      </center>
     </div>
     <div class="tab">
-    <p id="pergunta">3. Qual tipo de atividade você prefere fazer durante as férias?</p>
-      <label for="P3_A"><input type="radio" name="pergunta3" id="P3_A" value="3A">Relaxar na praia</label>
-      <label for="P3_B"><input type="radio" name="pergunta3" id="P3_B" value="3B">Fazer trilhas em montanhas</label>
-      <label for="P3_C"><input type="radio" name="pergunta3" id="P3_C" value="3C">Visitar museus e monumentos históricos</label>
-      <label for="P3_D"><input type="radio" name="pergunta3" id="P3_D" value="3D">Participar de atividades esportivas</label>
-      <label for="P3_E"><input type="radio" name="pergunta3" id="P3_E" value="3E">Fazer compras</label>
+    <p id="pergunta"><span id="num-pergunta">3.</span> Qual tipo de atividade você prefere fazer durante as férias?</p>
+    <center>
+      <input type="radio" name="pergunta3" id="P3_A" class="input-pergunta" value="3A"><label for="P3_A" class="label-pergunta" id="label-pergunta">Relaxar na praia</label>
+      <input type="radio" name="pergunta3" id="P3_B" class="input-pergunta" value="3B"><label for="P3_B" class="label-pergunta" id="label-pergunta">Fazer trilhas em montanhas</label>
+      <input type="radio" name="pergunta3" id="P3_C" class="input-pergunta" value="3C"><label for="P3_C" class="label-pergunta" id="label-pergunta">Visitar museus e monumentos históricos</label>
+      <input type="radio" name="pergunta3" id="P3_D" class="input-pergunta" value="3D"><label for="P3_D" class="label-pergunta" id="label-pergunta">Participar de atividades esportivas</label>
+      <input type="radio" name="pergunta3" id="P3_E" class="input-pergunta" value="3E"><label for="P3_E" class="label-pergunta" id="label-pergunta">Fazer compras</label>
+      </center>
     </div>
     <div class="tab">
-    <p id="pergunta">4. Qual é o seu tipo de hospedagem preferido?</p>
-      <label for="P4_A"><input type="radio" name="pergunta4" id="P4_A" value="4A">Hotel de luxo</label>
-      <label for="P4_B"><input type="radio" name="pergunta4" id="P4_B" value="4B">Casa de férias</label>
-      <label for="P4_C"><input type="radio" name="pergunta4" id="P4_C" value="4C">Hostel</label>
-      <label for="P4_D"><input type="radio" name="pergunta4" id="P4_D" value="4D">Camping</label>
-      <label for="P4_E"><input type="radio" name="pergunta4" id="P4_E" value="4E">Airbnb</label>
+
+    <p id="pergunta"><span id="num-pergunta">4.</span> Qual é o seu tipo de hospedagem preferido?</p>
+    <center>
+      <input type="radio" name="pergunta4" id="P4_A" class="input-pergunta" value="4A"><label for="P4_A" class="label-pergunta" id="label-pergunta">Hotel de luxo</label>
+      <input type="radio" name="pergunta4" id="P4_B" class="input-pergunta" value="4B"><label for="P4_B" class="label-pergunta" id="label-pergunta">Casa de férias</label>
+      <input type="radio" name="pergunta4" id="P4_C" class="input-pergunta" value="4C"><label for="P4_C" class="label-pergunta" id="label-pergunta">Hostel</label>
+      <input type="radio" name="pergunta4" id="P4_D" class="input-pergunta" value="4D"><label for="P4_D" class="label-pergunta" id="label-pergunta">Camping</label>
+      <input type="radio" name="pergunta4" id="P4_E" class="input-pergunta" value="4E"><label for="P4_E" class="label-pergunta" id="label-pergunta">Airbnb</label>
+    </center>  
     </div>
     <div class="tab">
-    <p id="pergunta">5. Qual é o seu tipo de transporte preferido durante uma viagem?</p>
-      <label for="P5_A"><input type="radio" name="pergunta5" id="P5_A" value="5A">Carro alugado</label>
-      <label for="P5_B"><input type="radio" name="pergunta5" id="P5_B" value="5B">Trem</label>
-      <label for="P5_C"><input type="radio" name="pergunta5" id="P5_C" value="5C">Avião</label>
-      <label for="P5_D"><input type="radio" name="pergunta5" id="P5_D" value="5D">Ônibus</label>
-      <label for="P5_E"><input type="radio" name="pergunta5" id="P5_E" value="5E">Moto</label>
+    <p id="pergunta"><span id="num-pergunta">5.</span> Qual é o seu tipo de transporte preferido durante uma viagem?</p>
+    <center>  
+      <input type="radio" name="pergunta5" id="P5_A" class="input-pergunta" value="5A"><label for="P5_A" class="label-pergunta" id="label-pergunta">Carro alugado</label>
+      <input type="radio" name="pergunta5" id="P5_B" class="input-pergunta" value="5B"><label for="P5_B" class="label-pergunta" id="label-pergunta">Trem</label>
+      <input type="radio" name="pergunta5" id="P5_C" class="input-pergunta" value="5C"><label for="P5_C" class="label-pergunta" id="label-pergunta">Avião</label>
+      <input type="radio" name="pergunta5" id="P5_D" class="input-pergunta" value="5D"><label for="P5_D" class="label-pergunta" id="label-pergunta">Ônibus</label>
+      <input type="radio" name="pergunta5" id="P5_E" class="input-pergunta" value="5E"><label for="P5_E" class="label-pergunta" id="label-pergunta">Moto</label>
+      </center>
     </div>
     <div class="tab">
-    <p id="pergunta">6. Qual é o tipo de paisagem que mais lhe atrai?</p>
-      <label for="P6_A"><input type="radio" name="pergunta6" id="P6_A" value="6A">Praias paradisíacas</label>
-      <label for="P6_B"><input type="radio" name="pergunta6" id="P6_B" value="6B">Cânions e montanhas rochosas</label>
-      <label for="P6_C"><input type="radio" name="pergunta6" id="P6_C" value="6C">Campos verdes e paisagens rurais</label>
-      <label for="P6_D"><input type="radio" name="pergunta6" id="P6_D" value="6D">Florestas tropicais</label>
-      <label for="P6_E"><input type="radio" name="pergunta6" id="P6_E" value="6E">Desertos e paisagens áridas</label>
+    <p id="pergunta"><span id="num-pergunta">6.</span> Qual é o tipo de paisagem que mais lhe atrai?</p>
+    <center>  
+      <input type="radio" name="pergunta6" id="P6_A" class="input-pergunta" value="6A"><label for="P6_A" class="label-pergunta" id="label-pergunta">Praias paradisíacas</label>
+      <input type="radio" name="pergunta6" id="P6_B" class="input-pergunta" value="6B"><label for="P6_B" class="label-pergunta" id="label-pergunta">Cânions e montanhas rochosas</label>
+      <input type="radio" name="pergunta6" id="P6_C" class="input-pergunta" value="6C"><label for="P6_C" class="label-pergunta" id="label-pergunta">Campos verdes e paisagens rurais</label>
+      <input type="radio" name="pergunta6" id="P6_D" class="input-pergunta" value="6D"><label for="P6_D" class="label-pergunta" id="label-pergunta">Florestas tropicais</label>
+      <input type="radio" name="pergunta6" id="P6_E" class="input-pergunta" value="6E"><label for="P6_E" class="label-pergunta" id="label-pergunta">Desertos e paisagens áridas</label>
+      </center>
     </div>
     <div class="tab">
-    <p id="pergunta">7. Qual é o tipo de música que você mais gosta??</p>
-      <label for="P7_A"><input type="radio" name="pergunta7" id="P7_A" value="7A">Pop</label>
-      <label for="P7_B"><input type="radio" name="pergunta7" id="P7_B" value="7B">Rock</label>
-      <label for="P7_C"><input type="radio" name="pergunta7" id="P7_C" value="7C">Eletrônica</label>
-      <label for="P7_D"><input type="radio" name="pergunta7" id="P7_D" value="7D">Samba e pagode</label>
-      <label for="P7_E"><input type="radio" name="pergunta7" id="P7_E" value="7E">Sertanejo</label>
+    <p id="pergunta"><span id="num-pergunta">7.</span> Qual é o tipo de música que você mais gosta?</p>
+    <center>  
+      <input type="radio" name="pergunta7" id="P7_A" class="input-pergunta" value="7A"><label for="P7_A" class="label-pergunta" id="label-pergunta">Pop</label>
+      <input type="radio" name="pergunta7" id="P7_B" class="input-pergunta" value="7B"><label for="P7_B" class="label-pergunta" id="label-pergunta">Rock</label>
+      <input type="radio" name="pergunta7" id="P7_C" class="input-pergunta" value="7C"><label for="P7_C" class="label-pergunta" id="label-pergunta">Eletrônica</label>
+      <input type="radio" name="pergunta7" id="P7_D" class="input-pergunta" value="7D"><label for="P7_D" class="label-pergunta" id="label-pergunta">Samba e pagode</label>
+      <input type="radio" name="pergunta7" id="P7_E" class="input-pergunta" value="7E"><label for="P7_E" class="label-pergunta" id="label-pergunta">Sertanejo</label>
+      </center>
     </div>
-      <div style="overflow:auto;">
+    <div class="tab">
+        <div class="teste-tabs"> 
+        <p class="subtitulo-enviar">
+          Criamos o destino ideal para você
+        </p>
+        <p class="texto-enviar" style="margin-top: -80px;">
+          Nossa tecnologia utiliza perguntas de âmbito pessoal e preferências, sendo assim caso o destino não seja compativel você pode fazer o teste quantas vezes quiser. Clique no botão enviar e se surpreenda!
+        </p>
+        <img src="./assets/imgs/aviao-last-page.jpg" alt="aviao" width="200px" style="margin-top: -40px;">
+      </div>
+      </div>
+
+  <div style="overflow:auto;">
     <div style="text-align:center;">
       <button type="button" id="prevBtn" onclick="nextPrev(-1)">Voltar</button>
       <button type="button" id="nextBtn" onclick="nextPrev(1)">Proxima</button>
     </div>
   </div>
-    </div>
 
-      <footer class="site-footer" style="margin-top: 40%">
+  <div style="text-align:center;margin-top:40px;">
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+  <span class="etapa"></span>
+</div>
+    </form>
+    </div>
+    
+
+      <footer class="site-footer" style="margin-top:120px;">
       <nav class="menu-footer">
         <h4 class="title-navegacao">Navegação</h4>
         <ul class="menu-list-footer">
-          <li>
-            <a href="index.php" class="menu-item-footer">Home</a>
-          </li>
+          <li> <a href="index.php" class="menu-item-footer">Home</a></li>
           <li><a href="travelmatch.php" class="menu-item-footer"><b>Travel</b>Match®</a></li>
           <li><a href="destinos.html" class="menu-item-footer">Destinos</a></li>
           <li><a href="contato.html" class="menu-item-footer">Contato</a></li>
         </ul>
-
       </nav>
       <center>
       <p class="copy-text">
@@ -309,7 +355,7 @@ header("Location: index.php");
     </div>
     </div>
     <script>
-  var variavel;
+    var variavel;
 
       function loading() {
         variavel = setTimeout(showPage, 1200);
@@ -360,5 +406,6 @@ function ocultaEditar(){
 
 </script>
     <script src="js/login_validate.js"></script>
+    <script src="js/travelmatch-test-form.js"></script>
   </body>
 </html>
