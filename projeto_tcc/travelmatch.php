@@ -16,10 +16,10 @@ if (isset($_SESSION["id"])) {
     $senha = $row_profile["senha"];
     if ($_SESSION["senha"] != $senha) {
       session_destroy();
-      header("Location: index.php");
+      header("Location: travelmatch.php");
     }
   } else {
-    header("Location: index.php");
+    header("Location: travelmatch.php");
   }
 }
 ?>
@@ -117,8 +117,8 @@ if (isset($_SESSION["id"])) {
           <li>
             <a href="index.php" class="menu-item">Home</a>
           </li>
-          <li><a href="match.html" class="menu-item" id="menu-selected"><b>Travel</b>Match®</a></li>
-          <li><a href="destinos.html" class="menu-item">Destinos</a></li>
+          <li><a href="travelmatch.php" class="menu-item" id="menu-selected"><b>Travel</b>Match®</a></li>
+          <li><a href="destinos.php" class="menu-item">Destinos</a></li>
           <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
       </nav>

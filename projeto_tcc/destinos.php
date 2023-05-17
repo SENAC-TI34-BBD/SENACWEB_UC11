@@ -25,10 +25,10 @@ if (isset($_SESSION["id"])) {
     $senha = $row_profile["senha"];
     if ($_SESSION["senha"] != $senha) {
       session_destroy();
-      header("Location: index.php");
+      header("Location: destinos.php");
     }
   } else {
-    header("Location: index.php");
+    header("Location: destinos.php");
   }
 }
 ?>
@@ -39,6 +39,7 @@ if (isset($_SESSION["id"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/travelmatch.css" />
     <link rel="icon" type="image/x-icon" href="assets/imgs/favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -108,7 +109,7 @@ if (isset($_SESSION["id"])) {
         to{ bottom:0; opacity:1 }
 }
     </style>
-    <title>TravelNow - Seu próximo Destino</title>
+    <title>TravelNow - Destinos</title>
   </head>
   <body onload="loading()" style="margin:0;padding:0;">
   <div id="carregando"></div>
@@ -123,10 +124,10 @@ if (isset($_SESSION["id"])) {
       <nav class="menu">
         <ul class="menu-list">
           <li>
-            <a href="index.html" class="menu-item" id="menu-selected">Home</a>
+            <a href="index.php" class="menu-item">Home</a>
           </li>
           <li><a href="travelmatch.php" class="menu-item"><b>Travel</b>Match®</a></li>
-          <li><a href="destinos.php" class="menu-item">Destinos</a></li>
+          <li><a href="destinos.php" class="menu-item"  id="menu-selected">Destinos</a></li>
           <li><a href="contato.html" class="menu-item">Contato</a></li>
         </ul>
       </nav>
@@ -141,7 +142,7 @@ if (isset($_SESSION["id"])) {
           "' width='52px' height ='52px' style='border: 3px solid #d0d0d0;border-radius: 50%'></a> </div>";
         echo "<div id='profile-info'>";
         echo $_SESSION["nome"] . " " . $_SESSION["sobrenome"] . "<br>";
-        echo "<a href='./content/logout.php'>Sair</a><br>";
+        echo "<a href='./content/logout_destinos.php'>Sair</a><br>";
         echo "</div><br><br>";
         //echo "<span id='editar-perfil' style='display:none'>Editar perfil</span>";
         echo "</div>";
@@ -215,30 +216,18 @@ if (isset($_SESSION["id"])) {
         </div>
       </div>
     </div>
-      <article class="banner-topo">
-        <div class="texto-banner">
-          <h1 id="texto-1">Vamos viajar o</h1>
-          <h1 id="texto-2">mundo?</h1>
-          <br>
-          <br>
-          <p id="texto-3">
-            Encontre seu próximo destino com a TravelNow<br> e tenha uma experiência
-            única!</p>
-
-        </div>
-        <div class="imagem-destinos">
-          <img src="./assets/imgs/destinations.png" alt="Destinos">
-        </div>
-        <br>
-        
-      </article>
-      <div class="container-destinos">
-      <h3 id="texto-destinos">Destinos populares</h3>
-      <br>
-      <button id="slideBack" type="button" class="btn-scroll">⬅</button>
-      <div class="destinos" id="container-destinos">
+      
+    <div class="body-destinos">
+      <div class="destinos-title">
+        <h1 id="destinos-title">Destinos</h1>
+        <p id="destinos-subtitle">
+          Conheça os destinos mais visitados do mundo e escolha o seu!
+        </p>
+        <div class="lista-destinos">
+        <div class="destinos" id="container-dest">
       <?php if ($result_destino and $result_destino->rowCount() != 0) {
         while ($row_destino = $result_destino->fetch(PDO::FETCH_ASSOC)) {
+          echo "<a href='destino.html' target='__blank' id='destino-link'> ";
           echo "<div id='destino'>";
           echo "<img src='" .
             $row_destino["foto"] .
@@ -247,61 +236,32 @@ if (isset($_SESSION["id"])) {
             $row_destino["destino"] .
             "</h4>";
           echo "</div>";
+          echo "</a>";
         }
       } else {
-        for ($x = 0; $x <= 10; $x++) {
+        for ($x = 0; $x <= 101; $x++) {
+          echo "<a href='destino.html' target='__blank' id='destino-link'> ";
           echo "<div id='destino'>";
           echo "<img src='./assets/imgs/destinos.png' id='destino-img'>
           <h4 id='destino-texto'>Destino Padrão</h4>";
           echo "</div>";
+          echo "</a>";
         }
       } ?>
-
+        </div>
+        </div>
+        </div>
     </div>
-    <button id="slide" type="button" class="btn-scroll">➡</i></button>
-    </div>
-
-    <div class="travelmatch-banner">
-    <h1 id="logo-travelmatch">
-      <b>Travel</b>Match®
-    </h1>
-    <br>
-    <p id="texto-travelmatch">
-      Utilize nossa inteligência artificial e descubra seu próximo destino!
-    </br>
-    <center><a href="travelmatch.php" class="travelmatch-link">Experimente ➜</a></center>
-    </div>
-
-    <div class="parceiros">
-      <div class="parceiro">
-        <img title="AirBnB" src="./assets/svg/airbnb.svg" alt="AirBnB" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="SkyScanner" src="./assets/svg/skyscanner.svg" alt="SkyScanner" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="TripAdvisor" src="./assets/svg/tripadvisor.svg" alt="TripAdvisor" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="Booking.com" src="./assets/svg/bookingcom.svg" alt="Booking" id="parceiro-img">
-      </div>
-      <div class="parceiro">
-        <img title="Latam" src="./assets/svg/latam.svg" alt="Latam" id="parceiro-img">
-      </div>
-    </div>
-
+      
       <footer class="site-footer">
       <nav class="menu-footer">
         <h4 class="title-navegacao">Navegação</h4>
         <ul class="menu-list-footer">
-          <li>
-            <a href="index.html" class="menu-item-footer">Home</a>
-          </li>
+          <li> <a href="index.php" class="menu-item-footer">Home</a></li>
           <li><a href="travelmatch.php" class="menu-item-footer"><b>Travel</b>Match®</a></li>
           <li><a href="destinos.html" class="menu-item-footer">Destinos</a></li>
           <li><a href="contato.html" class="menu-item-footer">Contato</a></li>
         </ul>
-
       </nav>
       <center>
       <p class="copy-text">
@@ -320,8 +280,9 @@ if (isset($_SESSION["id"])) {
     </footer>
     </div>
     </div>
+    </div>
     <script>
-  var variavel;
+    var variavel;
 
       function loading() {
         variavel = setTimeout(showPage, 1200);
@@ -372,5 +333,6 @@ function ocultaEditar(){
 
 </script>
     <script src="js/login_validate.js"></script>
+    <script src="js/travelmatch-test-form.js"></script>
   </body>
 </html>
